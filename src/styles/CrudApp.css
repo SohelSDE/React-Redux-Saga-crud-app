@@ -1,0 +1,38 @@
+.crud-app-container {
+    text-align: center;
+    padding: 20px;
+  }
+  
+  .custom-button {
+    background-color: #2196f3; /* Blue */
+    color: white;
+    padding: 10px 20px;
+    margin: 5px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .custom-button-green {
+    background-color: green;
+    color: white;
+    padding: 10px 20px;
+    margin: 5px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .user-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  
+  .user-item {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 5px;
+  }
+  
