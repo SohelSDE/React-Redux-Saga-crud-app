@@ -23,13 +23,14 @@ case GET_USER_BY_ID_SUCCESS:
     }
 };
 
-export const deleteReducerById =( state ={userById:{}}, action)=>{
-    switch (action.type){
-case DELETE_USER_BY_ID_SUCCESS:
-    console.log('put userId in saga ?:-',action)
-
-    return {...state, userById:action.userId}
-        default:
-        return state
+export const deleteReducerById = (state = { deleteById: {} }, action) => {
+    switch (action.type) {
+      case DELETE_USER_BY_ID_SUCCESS:
+        console.log('delete userId in saga ?:-', action);
+  
+        return { ...state, deleteById: action.Id }; // Corrected from action.userId to action.deleteById
+      default:
+        return state;
     }
-};
+  };
+  

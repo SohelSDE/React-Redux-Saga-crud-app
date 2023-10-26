@@ -5,6 +5,6 @@ export default function* rootSaga() {
   yield all([
     watchGetUser(),
     watchGetUserById(),
-    watchDeleteUserById
+    watchDeleteUserById(),
   ]);
 }

@@ -28,19 +28,28 @@ export const usersFetch = async () => {
     }
   };
   
-
   export const deleteUserByIdApi = async (id) => {
+    console.log('hit reaching here', id);
     try {
-      const response = await fetch(`https://jsonplaceholder.typicode.com/users/${id}`);
+      const response = await fetch(`http://localhost:5000/api/users/${id}`, {
+        method: 'DELETE',
+      });
       if (!response.ok) {
         throw new Error(`Error: ${response.status} - ${response.statusText}`);
       }
-      const userById = await response.json();
-      return userById;
+  
+      // Check if response has a body before trying to parse JSON
+      // const hasBody = response.headers.get('content-length') > '0';
+      // const userById = hasBody ? await response.json() : null;
+      // console.log('userById in delete :-', userById);
+      console.log('delete response:-',response)
+  
+      return response.text();
     } catch (error) {
       console.error(error);
-      throw error; // Rethrow the error so that it can be caught in the saga
+      throw error;
     } finally {
-      console.log(`User by ID API Hit for userId: ${id}`);
+      console.log(`User deleted by ID API Hit for userId: ${id}`);
     }
   };
+  

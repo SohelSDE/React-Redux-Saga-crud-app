@@ -5,11 +5,11 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { Provider,  } from 'react-redux';
 import { applyMiddleware, combineReducers ,createStore } from 'redux';
-import {userReducer,userReducerById} from './Reducers/Reducer';
+import {userReducer,userReducerById,deleteReducerById} from './Reducers/Reducer';
 import createSagaMiddleware from 'redux-saga';
 import rootSaga from './Sagas/rootSaga';
 const rootReducers = combineReducers({userReducer,
-  userReducerById});
+  userReducerById,deleteReducerById});
 const root = ReactDOM.createRoot(document.getElementById('root'));
 const sagaMiddleWare = createSagaMiddleware()
 const store = createStore(rootReducers,applyMiddleware(sagaMiddleWare))

@@ -1,5 +1,5 @@
 import { call, put, takeEvery } from 'redux-saga/effects';
-import { GET_USER, GET_USER_SUCCESS, GET_USER_BY_ID_SUCCESS, GET_USER_BY_ID_FAILURE, GET_USER_BY_ID } from '../Actions/action';
+import { GET_USER, GET_USER_SUCCESS, GET_USER_BY_ID_SUCCESS, GET_USER_BY_ID_FAILURE, GET_USER_BY_ID, DELETE_USER, DELETE_USER_BY_ID_SUCCESS } from '../Actions/action';
 import { usersFetch, getUserByIdApi, deleteUserByIdApi } from '../Components/apis';
 
 function* workGetWorkerFetch() {
@@ -13,7 +13,7 @@ function* workGetWorkerFetch() {
 
 function* getUserById(action) {
   try {
-    const userId = yield call(getUserByIdApi, action.userId);
+    const userId = yield call(getUserByIdApi, action.Id);
    console.log('call userId in saga:-',userId )
     yield put({ type: GET_USER_BY_ID_SUCCESS, userId });
 
@@ -23,14 +23,12 @@ function* getUserById(action) {
 }
 
 function* deleteUserById(action) {
-    try {
-      const userId = yield call(deleteUserByIdApi, action.userId);
-     console.log('call userId in saga:-',userId )
-      yield put({ type: GET_USER_BY_ID_SUCCESS, userId });
+    
+      const Id = yield call(deleteUserByIdApi, action.Id);
+     console.log('call deleteId in saga:-',Id )
+      yield put({ type: DELETE_USER_BY_ID_SUCCESS, Id });
   
-    } catch (error) {
-      yield put({ type: GET_USER_BY_ID_FAILURE, error });
-    }
+    
   }
 
 export function* watchGetUser() {
@@ -45,6 +43,6 @@ export function* watchGetUserById() {
 
 export function* watchDeleteUserById() {
 
-    yield takeEvery(GET_USER_BY_ID, deleteUserById);
+    yield takeEvery(DELETE_USER, deleteUserById);
   
   }
