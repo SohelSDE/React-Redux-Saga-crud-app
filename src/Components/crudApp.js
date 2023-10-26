@@ -3,12 +3,14 @@ import { useDispatch, useSelector } from 'react-redux';
 import { deleteUserById, getUserFetch, getUserbyId } from '../Actions/action';
 
 import '../styles/CrudApp.css'; 
+import UpdateAndCreate from './updateAndCreate';
 
 const CrudApp = () => {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.userReducer.user);
   const userByid = useSelector((state=> state.userReducerById.userById))
-  console.log("gettingback?",userByid);
+  const deleteById =useSelector((state)=> state.deleteReducerById.deleteById)
+  console.log("gettingback?",deleteById);
 
   useEffect(() => {
     // Fetch user when the component mounts
@@ -17,6 +19,7 @@ const CrudApp = () => {
 
   const handleCreate = () => {
     // Handle create logic
+    return <><div><UpdateAndCreate/></div></>
   };
 
   const handleUpdate = () => {
@@ -24,8 +27,12 @@ const CrudApp = () => {
   };
 
   const handleDelete = (id) => {
-    // Handle delete logic
-    dispatch (deleteUserById(id))
+
+    console.log("Delete ID called :", id);
+        dispatch (deleteUserById(id))
+        if(deleteById==='User deleted'){
+          alert('Deleted Successfully');
+        }
   };
 
   const  handleReadById = async(id) => {
@@ -68,13 +75,6 @@ const CrudApp = () => {
       <button className="custom-button" onClick={() => dispatch(getUserFetch())}>
         Fetch user
       </button>
-
-      {/* Display user data */}
-      {/* <div className='user-grid'>
-        {userByid.map((userByid)=>(<div>
-          <p>{userByid.name}</p>
-        </div> ))}
-      </div> */}
       <div className="user-grid">
         {user?.map((user) => (
           <div key={user.id} className="user-item">
